@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from '../auth-service/auth.service';
+import { AppUser } from '../models/app-user.model';
 
 @Component({
   selector: 'app-bs-navbar',
@@ -7,7 +9,11 @@ import { AuthService } from '../auth-service/auth.service';
   styleUrls: ['./bs-navbar.component.css']
 })
 export class BsNavbarComponent implements OnInit {
-  constructor(public authService: AuthService) {}
+  appUser: AppUser;
+
+  constructor(private authService: AuthService) {
+    authService.appUser$.subscribe(appUser => (this.appUser = appUser));
+  }
 
   ngOnInit() {}
 
