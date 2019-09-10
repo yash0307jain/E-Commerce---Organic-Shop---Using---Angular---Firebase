@@ -15,7 +15,7 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 
 const routes: Routes = [
   // routes for anonymous users
-  { path: '', component: HomeComponent },
+  { path: '', component: ProductsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },

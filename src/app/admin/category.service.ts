@@ -11,7 +11,7 @@ export class CategoryService {
 
   constructor(private afDb: AngularFireDatabase) {}
 
-  getCategories() {
+  getAll() {
     return this.afDb
       .list('categories')
       .snapshotChanges()
