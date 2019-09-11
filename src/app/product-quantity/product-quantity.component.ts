@@ -4,13 +4,12 @@ import { ShoppingCart } from '../models/shopping-cart';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 
 @Component({
-  selector: 'app-product-card',
-  templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css']
+  selector: 'app-product-quantity',
+  templateUrl: './product-quantity.component.html',
+  styleUrls: ['./product-quantity.component.css']
 })
-export class ProductCardComponent implements OnInit {
+export class ProductQuantityComponent implements OnInit {
   @Input('product') product: Product;
-  @Input('show-actions') showActions = true;
   @Input('shopping-cart') shoppingCart: ShoppingCart;
 
   constructor(private shoppingCartService: ShoppingCartService) {}
@@ -19,5 +18,9 @@ export class ProductCardComponent implements OnInit {
 
   addToCart() {
     this.shoppingCartService.addToCart(this.product);
+  }
+
+  removeFromCart() {
+    this.shoppingCartService.removeFromCart(this.product);
   }
 }

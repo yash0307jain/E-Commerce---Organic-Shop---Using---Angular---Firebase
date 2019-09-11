@@ -12,7 +12,7 @@ import { take } from 'rxjs/operators';
 })
 export class ProductFormComponent implements OnInit {
   categories$;
-  product = {};
+  product = { title: '', price: 0, category: '', imageUrl: '' };
   id;
 
   constructor(
@@ -27,7 +27,16 @@ export class ProductFormComponent implements OnInit {
       this.productService
         .getProduct(this.id)
         .pipe(take(1))
-        .subscribe(p => (this.product = p));
+        .subscribe(
+          (p: {
+            title: string;
+            price: number;
+            category: string;
+            imageUrl: string;
+          }) => {
+            this.product = p;
+          }
+        );
     }
   }
 

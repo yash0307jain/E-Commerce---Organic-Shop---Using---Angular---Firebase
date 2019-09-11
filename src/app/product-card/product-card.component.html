@@ -11,13 +11,19 @@
       {{ product.price | currency: 'INR' }}
     </p>
   </div>
-  <div class="card-footer">
+  <div *ngIf="showActions && shoppingCart" class="card-footer">
     <button
-      *ngIf="showActions"
-      (click)="addToCart(product)"
-      class="btn btn-primary btn-block"
+      *ngIf="shoppingCart.getQuantity(product) === 0; else updateQuantity"
+      (click)="addToCart()"
+      class="btn btn-secondary btn-block"
     >
       Add to Cart
     </button>
+    <ng-template #updateQuantity>
+      <app-product-quantity
+        [product]="product"
+        [shopping-cart]="shoppingCart"
+      ></app-product-quantity>
+    </ng-template>
   </div>
 </div>
