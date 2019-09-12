@@ -4,15 +4,22 @@ import { Product } from './product.model';
 export class ShoppingCart {
   items: ShoppingCartItem[] = [];
 
-  constructor(public itemsMap: { [productId: string]: ShoppingCartItem }) {
+  constructor(private itemsMap: { [productId: string]: ShoppingCartItem }) {
+    this.itemsMap = this.itemsMap || {};
+    // tslint:disable-next-line: forin
     for (const productId in itemsMap) {
       const item = itemsMap[productId];
-      this.items.push(new ShoppingCartItem(item.product, item.quantity));
+      this.items.push(
+        new ShoppingCartItem({
+          ...item,
+          key: productId
+        })
+      );
     }
   }
 
   getQuantity(product: Product) {
-    const item: ShoppingCartItem = this.itemsMap[product.key];
+    const item = this.itemsMap[product.key];
     return item ? item.quantity : 0;
   }
 
