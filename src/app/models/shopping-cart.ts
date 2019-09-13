@@ -6,7 +6,6 @@ export class ShoppingCart {
 
   constructor(private itemsMap: { [productId: string]: ShoppingCartItem }) {
     this.itemsMap = this.itemsMap || {};
-    // tslint:disable-next-line: forin
     for (const productId in itemsMap) {
       const item = itemsMap[productId];
       this.items.push(
